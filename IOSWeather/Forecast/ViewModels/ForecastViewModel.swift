@@ -1,5 +1,5 @@
 //
-//  SettingsViewModel.swift
+//  ForecastViewModel.swift
 //  IOSWeather
 //
 //  Created by Nicola on 09/04/2020.
@@ -8,22 +8,22 @@
 
 import UIKit
 
-class SettingsViewModel {
+class ForecastViewModel {
     
     // MARK: - Properties
     
-    private let view: SettingsViewInterface
-    private let navigator: SettingsNavigator
+    private let view: ForecastViewInterface
+    private let navigator: ForecastNavigator
     
     // MARK: - Initialization
     
-    init(view: SettingsViewInterface, navigator: SettingsNavigator) {
+    init(view: ForecastViewInterface, navigator: ForecastNavigator) {
         self.view = view
         self.navigator = navigator
     }
     
 }
 
-extension SettingsViewModel: SettingsViewModelInterface {
+extension ForecastViewModel: ForecastViewModelInterface {
     
 }

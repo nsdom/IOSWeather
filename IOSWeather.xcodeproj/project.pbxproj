@@ -25,6 +25,10 @@
 		B3861E94243F4E970075F1E0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E93243F4E970075F1E0 /* SettingsViewController.swift */; };
 		B3861E96243F4EAC0075F1E0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E95243F4EAC0075F1E0 /* SettingsViewModel.swift */; };
 		B3861E98243F4ECD0075F1E0 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E97243F4ECD0075F1E0 /* SettingsCoordinator.swift */; };
+		B3861E9F243F520C0075F1E0 /* ForecastInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E9E243F520C0075F1E0 /* ForecastInterfaces.swift */; };
+		B3861EA1243F521D0075F1E0 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861EA0243F521D0075F1E0 /* ForecastViewController.swift */; };
+		B3861EA3243F52290075F1E0 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861EA2243F52290075F1E0 /* ForecastViewModel.swift */; };
+		B3861EA5243F523E0075F1E0 /* ForecastCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861EA4243F523E0075F1E0 /* ForecastCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		B3861E93243F4E970075F1E0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B3861E95243F4EAC0075F1E0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		B3861E97243F4ECD0075F1E0 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		B3861E9E243F520C0075F1E0 /* ForecastInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastInterfaces.swift; sourceTree = "<group>"; };
+		B3861EA0243F521D0075F1E0 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		B3861EA2243F52290075F1E0 /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
+		B3861EA4243F523E0075F1E0 /* ForecastCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,7 @@
 		B3861E56243F38350075F1E0 /* IOSWeather */ = {
 			isa = PBXGroup;
 			children = (
+				B3861E99243F51BC0075F1E0 /* Forecast */,
 				B3861E8C243F4E4F0075F1E0 /* Settings */,
 				B3861E7F243F4A500075F1E0 /* Map */,
 				B3861E6F243F45EF0075F1E0 /* Main */,
@@ -247,6 +256,49 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		B3861E99243F51BC0075F1E0 /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E9D243F51DC0075F1E0 /* Coordinators */,
+				B3861E9C243F51D90075F1E0 /* Views */,
+				B3861E9B243F51D60075F1E0 /* ViewModels */,
+				B3861E9A243F51D00075F1E0 /* ViewControllers */,
+				B3861E9E243F520C0075F1E0 /* ForecastInterfaces.swift */,
+			);
+			path = Forecast;
+			sourceTree = "<group>";
+		};
+		B3861E9A243F51D00075F1E0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B3861EA0243F521D0075F1E0 /* ForecastViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B3861E9B243F51D60075F1E0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B3861EA2243F52290075F1E0 /* ForecastViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B3861E9C243F51D90075F1E0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B3861E9D243F51DC0075F1E0 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				B3861EA4243F523E0075F1E0 /* ForecastCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -320,15 +372,19 @@
 				B3861E77243F48610075F1E0 /* MainInterfaces.swift in Sources */,
 				B3861E7E243F48BC0075F1E0 /* MainCoordinator.swift in Sources */,
 				B3861E5C243F38350075F1E0 /* ViewController.swift in Sources */,
+				B3861EA3243F52290075F1E0 /* ForecastViewModel.swift in Sources */,
 				B3861E87243F4B0C0075F1E0 /* MapViewController.swift in Sources */,
 				B3861E85243F4AFE0075F1E0 /* MapInterfaces.swift in Sources */,
 				B3861E96243F4EAC0075F1E0 /* SettingsViewModel.swift in Sources */,
+				B3861EA5243F523E0075F1E0 /* ForecastCoordinator.swift in Sources */,
 				B3861E58243F38350075F1E0 /* AppDelegate.swift in Sources */,
 				B3861E92243F4E7E0075F1E0 /* SettingsInterfaces.swift in Sources */,
 				B3861E89243F4B1A0075F1E0 /* MapViewModel.swift in Sources */,
 				B3861E98243F4ECD0075F1E0 /* SettingsCoordinator.swift in Sources */,
 				B3861E7A243F48880075F1E0 /* TabBarViewController.swift in Sources */,
+				B3861EA1243F521D0075F1E0 /* ForecastViewController.swift in Sources */,
 				B3861E94243F4E970075F1E0 /* SettingsViewController.swift in Sources */,
+				B3861E9F243F520C0075F1E0 /* ForecastInterfaces.swift in Sources */,
 				B3861E62243F38350075F1E0 /* IOSWeather.xcdatamodeld in Sources */,
 				B3861E8B243F4B2A0075F1E0 /* MapCoordinator.swift in Sources */,
 				B3861E7C243F489C0075F1E0 /* TabBarViewModel.swift in Sources */,

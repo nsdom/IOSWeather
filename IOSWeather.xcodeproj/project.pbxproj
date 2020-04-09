@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B306F88C243F5EDE003E4AE9 /* TabBarItems.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B306F88B243F5EDE003E4AE9 /* TabBarItems.xcassets */; };
 		B3861E58243F38350075F1E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E57243F38350075F1E0 /* AppDelegate.swift */; };
 		B3861E5A243F38350075F1E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E59243F38350075F1E0 /* SceneDelegate.swift */; };
 		B3861E5C243F38350075F1E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E5B243F38350075F1E0 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B306F88B243F5EDE003E4AE9 /* TabBarItems.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBarItems.xcassets; sourceTree = "<group>"; };
 		B3861E54243F38350075F1E0 /* IOSWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3861E57243F38350075F1E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3861E59243F38350075F1E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				B3861E63243F38380075F1E0 /* Assets.xcassets */,
 				B3861E65243F38380075F1E0 /* LaunchScreen.storyboard */,
 				B3861E60243F38350075F1E0 /* IOSWeather.xcdatamodeld */,
+				B306F88B243F5EDE003E4AE9 /* TabBarItems.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3861E67243F38380075F1E0 /* LaunchScreen.storyboard in Resources */,
+				B306F88C243F5EDE003E4AE9 /* TabBarItems.xcassets in Resources */,
 				B3861E64243F38380075F1E0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

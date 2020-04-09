@@ -13,6 +13,18 @@
 		B3861E62243F38350075F1E0 /* IOSWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3861E60243F38350075F1E0 /* IOSWeather.xcdatamodeld */; };
 		B3861E64243F38380075F1E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3861E63243F38380075F1E0 /* Assets.xcassets */; };
 		B3861E67243F38380075F1E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3861E65243F38380075F1E0 /* LaunchScreen.storyboard */; };
+		B3861E77243F48610075F1E0 /* MainInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E76243F48610075F1E0 /* MainInterfaces.swift */; };
+		B3861E7A243F48880075F1E0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E79243F48880075F1E0 /* TabBarViewController.swift */; };
+		B3861E7C243F489C0075F1E0 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E7B243F489C0075F1E0 /* TabBarViewModel.swift */; };
+		B3861E7E243F48BC0075F1E0 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E7D243F48BC0075F1E0 /* MainCoordinator.swift */; };
+		B3861E85243F4AFE0075F1E0 /* MapInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E84243F4AFE0075F1E0 /* MapInterfaces.swift */; };
+		B3861E87243F4B0C0075F1E0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E86243F4B0C0075F1E0 /* MapViewController.swift */; };
+		B3861E89243F4B1A0075F1E0 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E88243F4B1A0075F1E0 /* MapViewModel.swift */; };
+		B3861E8B243F4B2A0075F1E0 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E8A243F4B2A0075F1E0 /* MapCoordinator.swift */; };
+		B3861E92243F4E7E0075F1E0 /* SettingsInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E91243F4E7E0075F1E0 /* SettingsInterfaces.swift */; };
+		B3861E94243F4E970075F1E0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E93243F4E970075F1E0 /* SettingsViewController.swift */; };
+		B3861E96243F4EAC0075F1E0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E95243F4EAC0075F1E0 /* SettingsViewModel.swift */; };
+		B3861E98243F4ECD0075F1E0 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E97243F4ECD0075F1E0 /* SettingsCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +36,18 @@
 		B3861E63243F38380075F1E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3861E66243F38380075F1E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3861E68243F38380075F1E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3861E76243F48610075F1E0 /* MainInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInterfaces.swift; sourceTree = "<group>"; };
+		B3861E79243F48880075F1E0 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		B3861E7B243F489C0075F1E0 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		B3861E7D243F48BC0075F1E0 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		B3861E84243F4AFE0075F1E0 /* MapInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInterfaces.swift; sourceTree = "<group>"; };
+		B3861E86243F4B0C0075F1E0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B3861E88243F4B1A0075F1E0 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		B3861E8A243F4B2A0075F1E0 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		B3861E91243F4E7E0075F1E0 /* SettingsInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInterfaces.swift; sourceTree = "<group>"; };
+		B3861E93243F4E970075F1E0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B3861E95243F4EAC0075F1E0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		B3861E97243F4ECD0075F1E0 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +80,171 @@
 		B3861E56243F38350075F1E0 /* IOSWeather */ = {
 			isa = PBXGroup;
 			children = (
-				B3861E57243F38350075F1E0 /* AppDelegate.swift */,
-				B3861E59243F38350075F1E0 /* SceneDelegate.swift */,
+				B3861E8C243F4E4F0075F1E0 /* Settings */,
+				B3861E7F243F4A500075F1E0 /* Map */,
+				B3861E6F243F45EF0075F1E0 /* Main */,
+				B3861E71243F47D50075F1E0 /* App */,
+				B3861E6E243F45DD0075F1E0 /* Network */,
+				B3861E70243F46080075F1E0 /* Resources */,
 				B3861E5B243F38350075F1E0 /* ViewController.swift */,
-				B3861E63243F38380075F1E0 /* Assets.xcassets */,
-				B3861E65243F38380075F1E0 /* LaunchScreen.storyboard */,
 				B3861E68243F38380075F1E0 /* Info.plist */,
-				B3861E60243F38350075F1E0 /* IOSWeather.xcdatamodeld */,
 			);
 			path = IOSWeather;
+			sourceTree = "<group>";
+		};
+		B3861E6E243F45DD0075F1E0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B3861E6F243F45EF0075F1E0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E75243F481C0075F1E0 /* Coordinators */,
+				B3861E74243F48190075F1E0 /* Views */,
+				B3861E73243F48160075F1E0 /* ViewModels */,
+				B3861E72243F48120075F1E0 /* ViewControllers */,
+				B3861E76243F48610075F1E0 /* MainInterfaces.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B3861E70243F46080075F1E0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E63243F38380075F1E0 /* Assets.xcassets */,
+				B3861E65243F38380075F1E0 /* LaunchScreen.storyboard */,
+				B3861E60243F38350075F1E0 /* IOSWeather.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B3861E71243F47D50075F1E0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E57243F38350075F1E0 /* AppDelegate.swift */,
+				B3861E59243F38350075F1E0 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B3861E72243F48120075F1E0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E79243F48880075F1E0 /* TabBarViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B3861E73243F48160075F1E0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E7B243F489C0075F1E0 /* TabBarViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B3861E74243F48190075F1E0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B3861E75243F481C0075F1E0 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E7D243F48BC0075F1E0 /* MainCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		B3861E7F243F4A500075F1E0 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E83243F4A6C0075F1E0 /* Coordinators */,
+				B3861E82243F4A680075F1E0 /* Views */,
+				B3861E81243F4A660075F1E0 /* ViewModels */,
+				B3861E80243F4A610075F1E0 /* ViewControllers */,
+				B3861E84243F4AFE0075F1E0 /* MapInterfaces.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		B3861E80243F4A610075F1E0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E86243F4B0C0075F1E0 /* MapViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B3861E81243F4A660075F1E0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E88243F4B1A0075F1E0 /* MapViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B3861E82243F4A680075F1E0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B3861E83243F4A6C0075F1E0 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E8A243F4B2A0075F1E0 /* MapCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		B3861E8C243F4E4F0075F1E0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E90243F4E700075F1E0 /* Coordinators */,
+				B3861E8F243F4E6C0075F1E0 /* Views */,
+				B3861E8E243F4E690075F1E0 /* ViewModels */,
+				B3861E8D243F4E5F0075F1E0 /* ViewControllers */,
+				B3861E91243F4E7E0075F1E0 /* SettingsInterfaces.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B3861E8D243F4E5F0075F1E0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E93243F4E970075F1E0 /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B3861E8E243F4E690075F1E0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E95243F4EAC0075F1E0 /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B3861E8F243F4E6C0075F1E0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B3861E90243F4E700075F1E0 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				B3861E97243F4ECD0075F1E0 /* SettingsCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +317,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3861E77243F48610075F1E0 /* MainInterfaces.swift in Sources */,
+				B3861E7E243F48BC0075F1E0 /* MainCoordinator.swift in Sources */,
 				B3861E5C243F38350075F1E0 /* ViewController.swift in Sources */,
+				B3861E87243F4B0C0075F1E0 /* MapViewController.swift in Sources */,
+				B3861E85243F4AFE0075F1E0 /* MapInterfaces.swift in Sources */,
+				B3861E96243F4EAC0075F1E0 /* SettingsViewModel.swift in Sources */,
 				B3861E58243F38350075F1E0 /* AppDelegate.swift in Sources */,
+				B3861E92243F4E7E0075F1E0 /* SettingsInterfaces.swift in Sources */,
+				B3861E89243F4B1A0075F1E0 /* MapViewModel.swift in Sources */,
+				B3861E98243F4ECD0075F1E0 /* SettingsCoordinator.swift in Sources */,
+				B3861E7A243F48880075F1E0 /* TabBarViewController.swift in Sources */,
+				B3861E94243F4E970075F1E0 /* SettingsViewController.swift in Sources */,
 				B3861E62243F38350075F1E0 /* IOSWeather.xcdatamodeld in Sources */,
+				B3861E8B243F4B2A0075F1E0 /* MapCoordinator.swift in Sources */,
+				B3861E7C243F489C0075F1E0 /* TabBarViewModel.swift in Sources */,
 				B3861E5A243F38350075F1E0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

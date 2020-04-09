@@ -58,7 +58,6 @@ class TabBarViewController: UITabBarController {
         settingsViewController.tabBarItem.image = imageSettings
         settingsViewController.tabBarItem.title = "Settings"
     }
-    
 }
 
 extension TabBarViewController: MainViewInterface {

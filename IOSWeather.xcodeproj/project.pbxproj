@@ -34,6 +34,10 @@
 		B3861EAE243F54CD0075F1E0 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861EAD243F54CD0075F1E0 /* NotificationsViewController.swift */; };
 		B3861EB0243F54DA0075F1E0 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861EAF243F54DA0075F1E0 /* NotificationsViewModel.swift */; };
 		B3861EB2243F54EA0075F1E0 /* NotificationsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861EB1243F54EA0075F1E0 /* NotificationsCoordinator.swift */; };
+		B3BB4C3E243F8E950011A649 /* AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4C3D243F8E950011A649 /* AutoComplete.swift */; };
+		B3BB4C40243F8EAE0011A649 /* AutoCompleteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4C3F243F8EAE0011A649 /* AutoCompleteData.swift */; };
+		B3BB4C42243F8EBC0011A649 /* LookUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4C41243F8EBC0011A649 /* LookUp.swift */; };
+		B3BB4C44243F8EC70011A649 /* LookUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4C43243F8EC70011A649 /* LookUpData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +70,10 @@
 		B3861EAD243F54CD0075F1E0 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		B3861EAF243F54DA0075F1E0 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		B3861EB1243F54EA0075F1E0 /* NotificationsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCoordinator.swift; sourceTree = "<group>"; };
+		B3BB4C3D243F8E950011A649 /* AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoComplete.swift; sourceTree = "<group>"; };
+		B3BB4C3F243F8EAE0011A649 /* AutoCompleteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteData.swift; sourceTree = "<group>"; };
+		B3BB4C41243F8EBC0011A649 /* LookUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUp.swift; sourceTree = "<group>"; };
+		B3BB4C43243F8EC70011A649 /* LookUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,8 @@
 		B3861E6E243F45DD0075F1E0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				B3BB4C3C243F8E7F0011A649 /* AutoComplete */,
+				B3BB4C3B243F8E5D0011A649 /* LookUp */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -354,6 +364,24 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		B3BB4C3B243F8E5D0011A649 /* LookUp */ = {
+			isa = PBXGroup;
+			children = (
+				B3BB4C41243F8EBC0011A649 /* LookUp.swift */,
+				B3BB4C43243F8EC70011A649 /* LookUpData.swift */,
+			);
+			path = LookUp;
+			sourceTree = "<group>";
+		};
+		B3BB4C3C243F8E7F0011A649 /* AutoComplete */ = {
+			isa = PBXGroup;
+			children = (
+				B3BB4C3D243F8E950011A649 /* AutoComplete.swift */,
+				B3BB4C3F243F8EAE0011A649 /* AutoCompleteData.swift */,
+			);
+			path = AutoComplete;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -428,6 +456,7 @@
 				B3861E77243F48610075F1E0 /* MainInterfaces.swift in Sources */,
 				B3861E7E243F48BC0075F1E0 /* MainCoordinator.swift in Sources */,
 				B3861E5C243F38350075F1E0 /* ViewController.swift in Sources */,
+				B3BB4C44243F8EC70011A649 /* LookUpData.swift in Sources */,
 				B3861EA3243F52290075F1E0 /* ForecastViewModel.swift in Sources */,
 				B3861E87243F4B0C0075F1E0 /* MapViewController.swift in Sources */,
 				B3861E85243F4AFE0075F1E0 /* MapInterfaces.swift in Sources */,
@@ -435,9 +464,11 @@
 				B3861EA5243F523E0075F1E0 /* ForecastCoordinator.swift in Sources */,
 				B3861E58243F38350075F1E0 /* AppDelegate.swift in Sources */,
 				B3861E92243F4E7E0075F1E0 /* SettingsInterfaces.swift in Sources */,
+				B3BB4C3E243F8E950011A649 /* AutoComplete.swift in Sources */,
 				B3861E89243F4B1A0075F1E0 /* MapViewModel.swift in Sources */,
 				B3861EB0243F54DA0075F1E0 /* NotificationsViewModel.swift in Sources */,
 				B3861E98243F4ECD0075F1E0 /* SettingsCoordinator.swift in Sources */,
+				B3BB4C40243F8EAE0011A649 /* AutoCompleteData.swift in Sources */,
 				B3861E7A243F48880075F1E0 /* TabBarViewController.swift in Sources */,
 				B3861EAC243F54B70075F1E0 /* NotificationsIntefaces.swift in Sources */,
 				B3861EB2243F54EA0075F1E0 /* NotificationsCoordinator.swift in Sources */,
@@ -449,6 +480,7 @@
 				B3861EAE243F54CD0075F1E0 /* NotificationsViewController.swift in Sources */,
 				B3861E7C243F489C0075F1E0 /* TabBarViewModel.swift in Sources */,
 				B3861E5A243F38350075F1E0 /* SceneDelegate.swift in Sources */,
+				B3BB4C42243F8EBC0011A649 /* LookUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

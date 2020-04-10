@@ -7,18 +7,28 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ForecastViewController: UIViewController {
     
     // MARK: - Properties
     
     var viewModel: ForecastViewModelInterface!
+    var currentWeatherView = CurrentWeatherView()
     
     var autoCompleteResults: [AutoCompleteViewModel]? {
         didSet {
             searchResultsTableView.reloadData()
         }
     }
+    
+    var lookUpResult: LookUpViewModel? {
+        didSet {
+            searchResultsTableView.reloadData()
+        }
+    }
+    
+    var currentWeather: CurrentWeatherViewModel?
     
     let separatorView: UIView = {
         let sv = UIView()
@@ -85,6 +95,14 @@ class ForecastViewController: UIViewController {
             searchResultsTableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
             searchResultsTableView.heightAnchor.constraint(equalToConstant: 250)
         ])
+        
+        NSLayoutConstraint.activate([
+            currentWeatherView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            currentWeatherView.bottomAnchor.constraint(equalTo: searchBarView.topAnchor, constant: -20),
+            currentWeatherView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            currentWeatherView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+        
     }
     
     fileprivate func addSubviews() {
@@ -92,6 +110,7 @@ class ForecastViewController: UIViewController {
         view.addSubview(separatorView)
         view.addSubview(searchBarView)
         view.addSubview(searchResultsTableView)
+        view.addSubview(currentWeatherView)
         searchBarView.delegate = self
     }
 }
@@ -145,7 +164,27 @@ extension ForecastViewController: UITableViewDelegate {
 }
 
 extension ForecastViewController: ForecastViewInterface {
+    func showCurrentWeather(_ results: CurrentWeatherViewModel) {
+        self.currentWeather = results
+    }
+    
+    func showHourlyWeather(_ results: HourlyWeatherViewModel) {
+        
+    }
+    
+    func showDailyWeather(_ results: DailyWeatherViewModel) {
+        
+    }
+    
     func showLookUpResults(_ results: LookUpViewModel) {
+        self.lookUpResult = results
+        var locationCoord = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        guard let lat = results.displayLocation?.lat else { return }
+        guard let lon = results.displayLocation?.lon else { return }
+        locationCoord.latitude = lat
+        locationCoord.longitude = lon
+        
+        viewModel.getWeather(location: locationCoord)
         
     }
     

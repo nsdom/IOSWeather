@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ForecastViewModel {
     
@@ -16,6 +17,7 @@ class ForecastViewModel {
     private let navigator: ForecastNavigator
     let autoCompleteData = AutoCompleteData()
     let lookUpData = LookUpData()
+    let weatherData = WeatherCallData()
     
     // MARK: - Initialization
     
@@ -27,7 +29,30 @@ class ForecastViewModel {
 }
 
 extension ForecastViewModel: ForecastViewModelInterface {
-   
+    func getWeather(location: CLLocationCoordinate2D) {
+        weatherData.fetchWeather(location: location) { (result) in
+            switch result {
+            case .success(let weatherResult):
+                guard let currentResult = weatherResult.current else { return }
+                let currentWeather = CurrentWeatherViewModel(currentResult: currentResult)
+                
+                guard let hourlyResult = weatherResult.hourly else { return }
+                let hourlyWeather = HourlyWeatherViewModel(hourlyResult: hourlyResult)
+                
+                guard let dailyResult = weatherResult.daily else { return }
+                let dailyWeather = DailyWeatherViewModel(dailyResult: dailyResult)
+
+                DispatchQueue.main.async {
+                    self.view.showCurrentWeather(currentWeather)
+                    self.view.showHourlyWeather(hourlyWeather)
+                    self.view.showDailyWeather(dailyWeather)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func getLookUp(locationId: String) {
         lookUpData.fetchSearchLocation(locationId) { (result) in
             switch result {

@@ -16,6 +16,4 @@ class ViewController: UIViewController {
         view.backgroundColor = .green
     }
 
-
 }
-

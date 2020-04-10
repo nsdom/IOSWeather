@@ -38,6 +38,9 @@
 		B3BB4C40243F8EAE0011A649 /* AutoCompleteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4C3F243F8EAE0011A649 /* AutoCompleteData.swift */; };
 		B3BB4C42243F8EBC0011A649 /* LookUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4C41243F8EBC0011A649 /* LookUp.swift */; };
 		B3BB4C44243F8EC70011A649 /* LookUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4C43243F8EC70011A649 /* LookUpData.swift */; };
+		B3BB4C47243F90FF0011A649 /* AutoCompleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4C46243F90FF0011A649 /* AutoCompleteViewModel.swift */; };
+		B3BB4C49243F910F0011A649 /* LookUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB4C48243F910F0011A649 /* LookUpViewModel.swift */; };
+		B3EEB6B1243FB05A0015B5A0 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EEB6B0243FB05A0015B5A0 /* SearchResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,9 @@
 		B3BB4C3F243F8EAE0011A649 /* AutoCompleteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteData.swift; sourceTree = "<group>"; };
 		B3BB4C41243F8EBC0011A649 /* LookUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUp.swift; sourceTree = "<group>"; };
 		B3BB4C43243F8EC70011A649 /* LookUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpData.swift; sourceTree = "<group>"; };
+		B3BB4C46243F90FF0011A649 /* AutoCompleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteViewModel.swift; sourceTree = "<group>"; };
+		B3BB4C48243F910F0011A649 /* LookUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewModel.swift; sourceTree = "<group>"; };
+		B3EEB6B0243FB05A0015B5A0 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +307,7 @@
 		B3861E9B243F51D60075F1E0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				B3BB4C45243F90D60011A649 /* NetworkViewModels */,
 				B3861EA2243F52290075F1E0 /* ForecastViewModel.swift */,
 			);
 			path = ViewModels;
@@ -309,6 +316,7 @@
 		B3861E9C243F51D90075F1E0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B3EEB6B0243FB05A0015B5A0 /* SearchResultTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +390,15 @@
 			path = AutoComplete;
 			sourceTree = "<group>";
 		};
+		B3BB4C45243F90D60011A649 /* NetworkViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B3BB4C46243F90FF0011A649 /* AutoCompleteViewModel.swift */,
+				B3BB4C48243F910F0011A649 /* LookUpViewModel.swift */,
+			);
+			path = NetworkViewModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -392,6 +409,7 @@
 				B3861E50243F38350075F1E0 /* Sources */,
 				B3861E51243F38350075F1E0 /* Frameworks */,
 				B3861E52243F38350075F1E0 /* Resources */,
+				B3EEB6B2243FBAF50015B5A0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -448,12 +466,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B3EEB6B2243FBAF50015B5A0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "scripts=\"$SRCROOT/scripts\"\n\nfor sh in \"$scripts\"/*.sh; do\necho \"** RUNNING: $sh **\"\n\"$sh\"\necho \"** DONE: $sh **\"\necho\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B3861E50243F38350075F1E0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B3861E77243F48610075F1E0 /* MainInterfaces.swift in Sources */,
+				B3EEB6B1243FB05A0015B5A0 /* SearchResultTableViewCell.swift in Sources */,
 				B3861E7E243F48BC0075F1E0 /* MainCoordinator.swift in Sources */,
 				B3861E5C243F38350075F1E0 /* ViewController.swift in Sources */,
 				B3BB4C44243F8EC70011A649 /* LookUpData.swift in Sources */,
@@ -463,6 +502,7 @@
 				B3861E96243F4EAC0075F1E0 /* SettingsViewModel.swift in Sources */,
 				B3861EA5243F523E0075F1E0 /* ForecastCoordinator.swift in Sources */,
 				B3861E58243F38350075F1E0 /* AppDelegate.swift in Sources */,
+				B3BB4C47243F90FF0011A649 /* AutoCompleteViewModel.swift in Sources */,
 				B3861E92243F4E7E0075F1E0 /* SettingsInterfaces.swift in Sources */,
 				B3BB4C3E243F8E950011A649 /* AutoComplete.swift in Sources */,
 				B3861E89243F4B1A0075F1E0 /* MapViewModel.swift in Sources */,
@@ -478,6 +518,7 @@
 				B3861E62243F38350075F1E0 /* IOSWeather.xcdatamodeld in Sources */,
 				B3861E8B243F4B2A0075F1E0 /* MapCoordinator.swift in Sources */,
 				B3861EAE243F54CD0075F1E0 /* NotificationsViewController.swift in Sources */,
+				B3BB4C49243F910F0011A649 /* LookUpViewModel.swift in Sources */,
 				B3861E7C243F489C0075F1E0 /* TabBarViewModel.swift in Sources */,
 				B3861E5A243F38350075F1E0 /* SceneDelegate.swift in Sources */,
 				B3BB4C42243F8EBC0011A649 /* LookUp.swift in Sources */,

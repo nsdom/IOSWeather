@@ -13,9 +13,9 @@ protocol ForecastNavigator {
 }
 
 protocol ForecastViewInterface {
-    
+    func showResults(_ results: [AutoCompleteViewModel])
 }
 
 protocol ForecastViewModelInterface {
-    
+    func getAutoComplete(query: String)
 }

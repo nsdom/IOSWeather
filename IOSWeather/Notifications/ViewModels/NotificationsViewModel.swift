@@ -15,7 +15,6 @@ class NotificationsViewModel {
     private let navigator: NotificationsNavigator
     
     // MARK: - Initialization
-    
     init(view: NotificationsViewInterface, navigator: NotificationsNavigator) {
         self.view = view
         self.navigator = navigator
@@ -23,5 +22,4 @@ class NotificationsViewModel {
 }
 
 extension NotificationsViewModel: NotificationsViewModelInteface {
-    
 }

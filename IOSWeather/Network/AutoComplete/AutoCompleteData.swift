@@ -13,14 +13,13 @@ public class AutoCompleteData {
     
     public init() {}
     
-    public func fetchAutoComplete(userLocation: CLLocationCoordinate2D, searchQuery: String, completion: @escaping (Result<[AutoComplete.Suggestions], Error>) -> Void) {
+    public func fetchAutoComplete(searchQuery: String, completion: @escaping (Result<[AutoComplete.Suggestions], Error>) -> Void) {
         
         let baseURL = "https://autocomplete.geocoder.api.here.com/6.2/suggest.json?"
                let appID = "&app_id=b8FZxcGowAcWupBDY4sk"
                let appCode = "&app_code=eo_CV554JfdEvjMEdIOJ6A"
-               let atLocation = "at=\(userLocation.latitude),\(userLocation.longitude)"
                let query = "&query=\(searchQuery)"
-               let urlString = "\(baseURL)\(atLocation)\(query)\(appID)\(appCode)"
+               let urlString = "\(baseURL)\(query)\(appID)\(appCode)"
                guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, err) in
@@ -31,6 +30,7 @@ public class AutoCompleteData {
                 let decoder = JSONDecoder()
                 let results = try decoder.decode(AutoComplete.self, from: data)
                 guard let result = results.suggestions else { return }
+                print(result)
                 completion(.success(result))
             } catch {
                 completion(.failure(error))
@@ -38,4 +38,3 @@ public class AutoCompleteData {
         }.resume()
     }
 }
-

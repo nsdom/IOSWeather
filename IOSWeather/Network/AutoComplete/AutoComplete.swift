@@ -32,4 +32,3 @@ public struct Address: Codable {
     public var street: String?
     public var postalCode: String?
 }
-

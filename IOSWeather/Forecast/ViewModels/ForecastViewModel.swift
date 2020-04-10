@@ -14,6 +14,7 @@ class ForecastViewModel {
     
     private let view: ForecastViewInterface
     private let navigator: ForecastNavigator
+    let autoCompleteData = AutoCompleteData()
     
     // MARK: - Initialization
     
@@ -26,4 +27,19 @@ class ForecastViewModel {
 
 extension ForecastViewModel: ForecastViewModelInterface {
     
+    func getAutoComplete(query: String) {
+            autoCompleteData.fetchAutoComplete(searchQuery: query) { (result) in
+                switch result {
+                case .success(let searchResult):
+                    let locationSearchResult = searchResult.map { (autoComplete) in
+                        return AutoCompleteViewModel(locationSearch: autoComplete)
+                    }
+                    DispatchQueue.main.async {
+                         self.view.showResults(locationSearchResult)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
 }

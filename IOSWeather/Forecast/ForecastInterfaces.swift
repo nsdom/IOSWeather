@@ -13,9 +13,13 @@ protocol ForecastNavigator {
 }
 
 protocol ForecastViewInterface {
-    func showResults(_ results: [AutoCompleteViewModel])
+    func showAutoCompleteResults(_ results: [AutoCompleteViewModel])
+    
+    func showLookUpResults(_ results: LookUpViewModel)
 }
 
 protocol ForecastViewModelInterface {
     func getAutoComplete(query: String)
+    
+    func getLookUp(locationId: String)
 }

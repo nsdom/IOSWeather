@@ -25,7 +25,10 @@ class TabBarViewController: UITabBarController {
         
         setupTabBarApearance()
         setupTabBarItems()
-        forecastViewController.viewModel = ForecastViewModel(view: forecastViewController, navigator: ForecastCoordinator())
+        forecastViewController.viewModel = ForecastViewModel(
+            view: forecastViewController,
+            navigator: ForecastCoordinator()
+        )
         viewControllers = [
             forecastViewController,
             mapViewController,

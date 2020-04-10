@@ -129,6 +129,8 @@ extension ForecastViewController: UITableViewDataSource {
     //swiftlint:enable force_cast
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let locationId = autoCompleteResults?[indexPath.row].locationId else { return }
+        viewModel.getLookUp(locationId: locationId)
         searchResultsTableView.isHidden = true
         searchBarView.resignFirstResponder()
         searchBarView.text = nil
@@ -143,7 +145,11 @@ extension ForecastViewController: UITableViewDelegate {
 }
 
 extension ForecastViewController: ForecastViewInterface {
-    func showResults(_ results: [AutoCompleteViewModel]) {
+    func showLookUpResults(_ results: LookUpViewModel) {
+        
+    }
+    
+    func showAutoCompleteResults(_ results: [AutoCompleteViewModel]) {
         self.autoCompleteResults = results
     }
     

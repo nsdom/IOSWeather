@@ -19,7 +19,8 @@ class WeatherCallData {
         let lat = "lat=\(location.latitude)"
         let lon = "&lon=\(location.longitude)"
         let appId = "&appid=787fe238b65daec25f3174ad4e60fa38"
-        let urlString = "\(baseUrl)\(lat)\(lon)\(appId)"
+        let unitSystem = "&units=metric"
+        let urlString = "\(baseUrl)\(lat)\(lon)\(appId)\(unitSystem)"
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
@@ -27,7 +28,6 @@ class WeatherCallData {
             do {
                 let decoder = JSONDecoder()
                 let results = try decoder.decode(WeatherCall.self, from: data)
-                print(results)
                 completion(.success(results))
             } catch {
                 completion(.failure(error))

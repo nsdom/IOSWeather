@@ -30,7 +30,6 @@ public class AutoCompleteData {
                 let decoder = JSONDecoder()
                 let results = try decoder.decode(AutoComplete.self, from: data)
                 guard let result = results.suggestions else { return }
-                print(result)
                 completion(.success(result))
             } catch {
                 completion(.failure(error))

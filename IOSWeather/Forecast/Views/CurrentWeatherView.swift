@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CurrentWeatherView: UIView {
     
@@ -14,7 +15,13 @@ class CurrentWeatherView: UIView {
     
     var currentWeather: CurrentWeatherViewModel? {
         didSet {
-            
+            guard let iconString = currentWeather?.weather?.first?.icon else { return }
+            let iconUrl = "http://openweathermap.org/img/wn/\(iconString)@2x.png"
+            self.iconImageView.kf.setImage(with: URL(string: iconUrl))
+            guard let temp = currentWeather?.temp else { return }
+            self.tempLabelView.text = "\(Int(temp))ºC"
+            guard let feelsLike = currentWeather?.feelsLike else { return }
+            self.feelsLikeLabelView.text = "Feels like \(Int(feelsLike))ºC"
         }
     }
     
@@ -37,21 +44,25 @@ class CurrentWeatherView: UIView {
     let iconImageView: UIImageView = {
        let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        iv.contentMode = .scaleAspectFill
         return iv
     }()
     
     let tempLabelView: UILabel = {
        let lv = UILabel()
         lv.translatesAutoresizingMaskIntoConstraints = false
-        lv.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+        lv.font = .boldSystemFont(ofSize: 50)
+        lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lv.textAlignment = .center
         return lv
     }()
     
     let feelsLikeLabelView: UILabel = {
         let lv = UILabel()
         lv.translatesAutoresizingMaskIntoConstraints = false
-        lv.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        lv.font = .systemFont(ofSize: 22)
+        lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lv.textAlignment = .center
         return lv
     }()
     
@@ -79,37 +90,15 @@ class CurrentWeatherView: UIView {
     override func layoutSubviews() {
         
         NSLayoutConstraint.activate([
-            hStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            hStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             hStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             hStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             hStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-        NSLayoutConstraint.activate([
-            iconImageView.topAnchor.constraint(equalTo: hStackView.topAnchor),
-            iconImageView.leadingAnchor.constraint(equalTo: hStackView.leadingAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 80),
-            iconImageView.heightAnchor.constraint(equalToConstant: 80)
-        ])
-        
-        NSLayoutConstraint.activate([
-            tempLabelView.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 10),
-            tempLabelView.heightAnchor.constraint(equalToConstant: 80),
-            tempLabelView.leadingAnchor.constraint(equalTo: hStackView.leadingAnchor),
-            tempLabelView.trailingAnchor.constraint(equalTo: vStackView.trailingAnchor)
-        ])
-//
-//        NSLayoutConstraint.activate([
-//            feelsLikeLabelView.topAnchor.co
-//        ])
-        
-        NSLayoutConstraint.activate([
-            mapSnapImageView.trailingAnchor.constraint(equalTo: hStackView.trailingAnchor),
-            mapSnapImageView.bottomAnchor.constraint(equalTo: hStackView.bottomAnchor),
-            mapSnapImageView.widthAnchor.constraint(equalToConstant: 175),
-            mapSnapImageView.heightAnchor.constraint(equalToConstant: 175)
-        ])
-        
+        iconImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        tempLabelView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        mapSnapImageView.widthAnchor.constraint(equalToConstant: 175).isActive = true
     }
     
     required init?(coder: NSCoder) {

@@ -27,7 +27,6 @@ public class LookUpData {
                 guard let result =
                     results.response?.view?.first?.result?.first?.location?.displayPosition
                     else { return }
-                print(result)
                 completion(.success(result))
             } catch {
                 completion(.failure(error))

@@ -28,7 +28,11 @@ class ForecastViewController: UIViewController {
         }
     }
     
-    var currentWeather: CurrentWeatherViewModel?
+    var currentWeatherResult: CurrentWeatherViewModel? {
+        didSet {
+            currentWeatherView.currentWeather = currentWeatherResult
+        }
+    }
     
     let separatorView: UIView = {
         let sv = UIView()
@@ -165,7 +169,7 @@ extension ForecastViewController: UITableViewDelegate {
 
 extension ForecastViewController: ForecastViewInterface {
     func showCurrentWeather(_ results: CurrentWeatherViewModel) {
-        self.currentWeather = results
+        self.currentWeatherResult = results
     }
     
     func showHourlyWeather(_ results: HourlyWeatherViewModel) {

@@ -19,6 +19,9 @@ class ForecastViewController: UIViewController {
     var autoCompleteResults: [AutoCompleteViewModel]? {
         didSet {
             searchResultsTableView.reloadData()
+            self.titleLabelView.text = autoCompleteResults?.first?.address.city
+            guard let count = autoCompleteResults?.count else { return }
+
         }
     }
     
@@ -34,6 +37,15 @@ class ForecastViewController: UIViewController {
         }
     }
     
+    let titleLabelView: UILabel = {
+        let lv = UILabel()
+        lv.translatesAutoresizingMaskIntoConstraints = false
+        lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lv.font = .boldSystemFont(ofSize: 32)
+        lv.textAlignment = .center
+        return lv
+    }()
+    
     let separatorView: UIView = {
         let sv = UIView()
         sv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -45,7 +57,7 @@ class ForecastViewController: UIViewController {
        let sb = UISearchBar()
         sb.translatesAutoresizingMaskIntoConstraints = false
         sb.backgroundColor = .clear
-//        sb.placeholder = "Search Location"
+        sb.placeholder = "Search Location"
         sb.searchTextField.textAlignment = .left
         sb.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         sb.searchTextField.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -80,7 +92,7 @@ class ForecastViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         NSLayoutConstraint.activate([
-            separatorView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
+            separatorView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -80),
             separatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             separatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
             separatorView.heightAnchor.constraint(equalToConstant: 1.5)
@@ -97,11 +109,10 @@ class ForecastViewController: UIViewController {
             searchResultsTableView.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             searchResultsTableView.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
             searchResultsTableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
-            searchResultsTableView.heightAnchor.constraint(equalToConstant: 250)
+            searchResultsTableView.heightAnchor.constraint(equalToConstant: 200)
         ])
         
         NSLayoutConstraint.activate([
-            currentWeatherView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             currentWeatherView.bottomAnchor.constraint(equalTo: searchBarView.topAnchor, constant: -20),
             currentWeatherView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             currentWeatherView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
@@ -125,6 +136,7 @@ extension ForecastViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchResultsTableView.isHidden = false
+        searchBar.text = nil
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -156,7 +168,6 @@ extension ForecastViewController: UITableViewDataSource {
         viewModel.getLookUp(locationId: locationId)
         searchResultsTableView.isHidden = true
         searchBarView.resignFirstResponder()
-        searchBarView.text = nil
         searchResultsTableView.deselectRow(at: indexPath, animated: true)
         autoCompleteResults = nil
     }

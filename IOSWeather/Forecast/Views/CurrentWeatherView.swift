@@ -18,8 +18,12 @@ class CurrentWeatherView: UIView {
             guard let iconString = currentWeather?.weather?.first?.icon else { return }
             let iconUrl = "http://openweathermap.org/img/wn/\(iconString)@2x.png"
             self.iconImageView.kf.setImage(with: URL(string: iconUrl))
+            
             guard let temp = currentWeather?.temp else { return }
             self.tempLabelView.text = "\(Int(temp))ºC"
+            guard let description = currentWeather?.weather?.first?.description else { return }
+            self.descriptionLabelView.text = description
+            
             guard let feelsLike = currentWeather?.feelsLike else { return }
             self.feelsLikeLabelView.text = "Feels like \(Int(feelsLike))ºC"
         }
@@ -37,7 +41,7 @@ class CurrentWeatherView: UIView {
         let sv = UIStackView()
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
-        sv.spacing = 8
+        sv.spacing = 5
         return sv
     }()
     
@@ -57,10 +61,19 @@ class CurrentWeatherView: UIView {
         return lv
     }()
     
+    let descriptionLabelView: UILabel = {
+        let lv = UILabel()
+        lv.translatesAutoresizingMaskIntoConstraints = false
+        lv.font = .systemFont(ofSize: 18)
+        lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lv.textAlignment = .center
+        return lv
+    }()
+    
     let feelsLikeLabelView: UILabel = {
         let lv = UILabel()
         lv.translatesAutoresizingMaskIntoConstraints = false
-        lv.font = .systemFont(ofSize: 22)
+        lv.font = .systemFont(ofSize: 18)
         lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         lv.textAlignment = .center
         return lv
@@ -84,20 +97,24 @@ class CurrentWeatherView: UIView {
         vStackView.addArrangedSubview(iconImageView)
         vStackView.addArrangedSubview(tempLabelView)
         vStackView.addArrangedSubview(feelsLikeLabelView)
+        vStackView.addArrangedSubview(descriptionLabelView)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func layoutSubviews() {
         
         NSLayoutConstraint.activate([
-            hStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            hStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             hStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             hStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             hStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-        iconImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        tempLabelView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        iconImageView.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        tempLabelView.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        feelsLikeLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        descriptionLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
         mapSnapImageView.widthAnchor.constraint(equalToConstant: 175).isActive = true
     }
     

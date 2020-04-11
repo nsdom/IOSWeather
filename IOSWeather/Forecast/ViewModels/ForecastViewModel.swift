@@ -37,7 +37,9 @@ extension ForecastViewModel: ForecastViewModelInterface {
                 let currentWeather = CurrentWeatherViewModel(currentResult: currentResult)
                 
                 guard let hourlyResult = weatherResult.hourly else { return }
-                let hourlyWeather = HourlyWeatherViewModel(hourlyResult: hourlyResult)
+                let hourlyWeather = hourlyResult.map { (hourlyData)  in
+                    return HourlyWeatherViewModel(hourlyResult: [hourlyData])
+                }
                 
                 guard let dailyResult = weatherResult.daily else { return }
                 let dailyWeather = DailyWeatherViewModel(dailyResult: dailyResult)

@@ -15,13 +15,12 @@ class ForecastViewController: UIViewController {
     
     var viewModel: ForecastViewModelInterface!
     var currentWeatherView = CurrentWeatherView()
+    var collectionViewCell: CollectionViewCell!
     
     var autoCompleteResults: [AutoCompleteViewModel]? {
         didSet {
             searchResultsTableView.reloadData()
             self.titleLabelView.text = autoCompleteResults?.first?.address.city
-            guard let count = autoCompleteResults?.count else { return }
-
         }
     }
     
@@ -34,6 +33,12 @@ class ForecastViewController: UIViewController {
     var currentWeatherResult: CurrentWeatherViewModel? {
         didSet {
             currentWeatherView.currentWeather = currentWeatherResult
+        }
+    }
+    
+    var hourlyWeatherResult: [HourlyWeatherViewModel]? {
+        didSet {
+            collectionView.reloadData()
         }
     }
     
@@ -71,7 +76,17 @@ class ForecastViewController: UIViewController {
         let tb = UITableView()
         tb.translatesAutoresizingMaskIntoConstraints = false
         tb.isHidden = true
+        tb.tableFooterView = UIView()
         return tb
+    }()
+    
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        return cv
     }()
     
     // MARK: - ViewCycle
@@ -84,8 +99,11 @@ class ForecastViewController: UIViewController {
             SearchResultTableViewCell.self,
             forCellReuseIdentifier: SearchResultTableViewCell.reuseID
         )
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseID)
+        collectionView.dataSource = self
+        collectionView.delegate = self
         addSubviews()
-        
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -106,10 +124,17 @@ class ForecastViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 8),
+            collectionView.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
             searchResultsTableView.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             searchResultsTableView.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
             searchResultsTableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
-            searchResultsTableView.heightAnchor.constraint(equalToConstant: 200)
+            searchResultsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -124,9 +149,12 @@ class ForecastViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         view.addSubview(separatorView)
         view.addSubview(searchBarView)
+        view.addSubview(collectionView)
         view.addSubview(searchResultsTableView)
         view.addSubview(currentWeatherView)
+        
         searchBarView.delegate = self
+
     }
 }
 
@@ -183,8 +211,10 @@ extension ForecastViewController: ForecastViewInterface {
         self.currentWeatherResult = results
     }
     
-    func showHourlyWeather(_ results: HourlyWeatherViewModel) {
-        
+    func showHourlyWeather(_ results: [HourlyWeatherViewModel]) {
+        hourlyWeatherResult = results
+//        print("hourlyWeatherResults:", hourlyWeatherResult)
+    
     }
     
     func showDailyWeather(_ results: DailyWeatherViewModel) {
@@ -207,4 +237,27 @@ extension ForecastViewController: ForecastViewInterface {
         self.autoCompleteResults = results
     }
     
+}
+
+extension ForecastViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    //swiftlint:disable force_cast
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: CollectionViewCell.reuseID,
+            for: indexPath) as! CollectionViewCell
+        return cell
+    }
+    //swiftlint:enable force_cast
+    
+}
+
+extension ForecastViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: separatorView.bounds.width, height: collectionView.bounds.height)
+    }
 }

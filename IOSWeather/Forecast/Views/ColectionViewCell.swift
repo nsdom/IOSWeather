@@ -12,7 +12,6 @@ class CollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     static var reuseID = String(describing: self)
-    var forecastViewController: ForecastViewController!
     
     var hourlyResults: [HourlyWeatherViewModel]? {
      didSet {
@@ -20,7 +19,6 @@ class CollectionViewCell: UICollectionViewCell {
         }
     }
      
-    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -41,6 +39,11 @@ class CollectionViewCell: UICollectionViewCell {
         collectionView.register(
             WeatherCollectionViewCell.self,
             forCellWithReuseIdentifier: WeatherCollectionViewCell.reuseId)
+        collectionView.register(
+            WeatherCollectionViewHeader.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: WeatherCollectionViewHeader.reuseID
+        )
 
     }
     
@@ -74,11 +77,25 @@ extension CollectionViewCell: UICollectionViewDataSource {
         cell.hourlyWeatherResults = hourlyResults?[indexPath.row]
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionHeader = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: WeatherCollectionViewHeader.reuseID,
+            for: indexPath) as! WeatherCollectionViewHeader
+        return sectionHeader
+    }
     //swiftlint:enable force_cast
+
 }
 
 extension CollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.bounds.width, height: 50)
+        return CGSize(width: self.bounds.width, height: 40)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: 120)
+    }
+    
 }

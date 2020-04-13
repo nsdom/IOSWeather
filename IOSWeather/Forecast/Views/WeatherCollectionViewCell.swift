@@ -15,14 +15,14 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     var hourlyWeatherResults: HourlyWeatherViewModel? {
         didSet {
             guard let temp = hourlyWeatherResults?.temp else { return }
-            self.tempLabel.text = "\(temp)ºC"
+            self.tempLabel.text = "\(Int(temp))ºC"
             
             guard let description = hourlyWeatherResults?.weather?.first?.description else { return }
             self.descriptionLabel.text = description
             
             guard let unixTime = hourlyWeatherResults?.dt else { return }
-            let time = NSDate(timeIntervalSince1970: Double(unixTime))
-            self.timeLabel.text = "\(time)"
+            let time = Date(timeIntervalSince1970: Double(unixTime)).shortTime
+            self.timeLabel.text = time
         }
     }
     
@@ -37,6 +37,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         let tl = UILabel()
         tl.translatesAutoresizingMaskIntoConstraints = false
         tl.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        tl.font = .boldSystemFont(ofSize: 18)
         return tl
     }()
     
@@ -44,6 +45,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         let dl = UILabel()
         dl.translatesAutoresizingMaskIntoConstraints = false
         dl.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        dl.textAlignment = .center
         return dl
     }()
     
@@ -51,7 +53,16 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         let tl = UILabel()
         tl.translatesAutoresizingMaskIntoConstraints = false
         tl.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        tl.textAlignment = .right
+        tl.font = .boldSystemFont(ofSize: 18)
         return tl
+    }()
+    
+    let separatorView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        return v
     }()
     
     override init(frame: CGRect) {
@@ -61,6 +72,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         hstackView.addArrangedSubview(timeLabel)
         hstackView.addArrangedSubview(descriptionLabel)
         hstackView.addArrangedSubview(tempLabel)
+        addSubview(separatorView)
     }
     
     override func layoutSubviews() {
@@ -68,17 +80,23 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             hstackView.topAnchor.constraint(equalTo: self.topAnchor),
-            hstackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            hstackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            hstackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            hstackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             hstackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-        timeLabel.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        tempLabel.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        NSLayoutConstraint.activate([
+            separatorView.topAnchor.constraint(equalTo: hstackView.bottomAnchor),
+            separatorView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            separatorView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            separatorView.heightAnchor.constraint(equalToConstant: 1.25)
+        ])
+        
+        timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        tempLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

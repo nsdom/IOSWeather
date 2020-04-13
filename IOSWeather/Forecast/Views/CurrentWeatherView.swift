@@ -56,7 +56,7 @@ class CurrentWeatherView: UIView {
        let lv = UILabel()
         lv.translatesAutoresizingMaskIntoConstraints = false
         lv.font = .boldSystemFont(ofSize: 50)
-        lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lv.textColor = UIColor(named: "black")
         lv.textAlignment = .center
         return lv
     }()
@@ -65,7 +65,7 @@ class CurrentWeatherView: UIView {
         let lv = UILabel()
         lv.translatesAutoresizingMaskIntoConstraints = false
         lv.font = .systemFont(ofSize: 18)
-        lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lv.textColor = UIColor(named: "black")
         lv.textAlignment = .center
         return lv
     }()
@@ -74,7 +74,7 @@ class CurrentWeatherView: UIView {
         let lv = UILabel()
         lv.translatesAutoresizingMaskIntoConstraints = false
         lv.font = .systemFont(ofSize: 18)
-        lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lv.textColor = UIColor(named: "black")
         lv.textAlignment = .center
         return lv
     }()
@@ -82,8 +82,11 @@ class CurrentWeatherView: UIView {
     let mapSnapImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = UIImage(named: "mapSnap")
+        iv.image?.withRenderingMode(.alwaysTemplate)
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
         iv.layer.cornerRadius = 20
-        iv.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         return iv
     }()
     

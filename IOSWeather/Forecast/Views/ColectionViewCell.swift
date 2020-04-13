@@ -39,7 +39,7 @@ class CollectionViewCell: UICollectionViewCell {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cv.backgroundColor = UIColor(named: "white")
         return cv
     }()
     
@@ -48,7 +48,7 @@ class CollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        backgroundColor = UIColor(named: "white")
         addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -97,7 +97,6 @@ extension CollectionViewCell: UICollectionViewDataSource {
             cell.dailyWeatherResults = dailyResults?[indexPath.row]
         }
        
-        
         return cell
     }
     

@@ -10,6 +10,8 @@
 		8BC7A4C61CBA1B88923000FB /* Pods_IOSWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E102019D95BE03D1CCAB6D6 /* Pods_IOSWeather.framework */; };
 		B306F88C243F5EDE003E4AE9 /* TabBarItems.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B306F88B243F5EDE003E4AE9 /* TabBarItems.xcassets */; };
 		B3319E492441E38E005B8777 /* ColectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3319E482441E38E005B8777 /* ColectionViewCell.swift */; };
+		B36FDA272445012500AFDE87 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36FDA262445012500AFDE87 /* SettingsTableViewCell.swift */; };
+		B36FDA292445042B00AFDE87 /* SettingsOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36FDA282445042B00AFDE87 /* SettingsOptionsViewModel.swift */; };
 		B3861E58243F38350075F1E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E57243F38350075F1E0 /* AppDelegate.swift */; };
 		B3861E5A243F38350075F1E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E59243F38350075F1E0 /* SceneDelegate.swift */; };
 		B3861E5C243F38350075F1E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861E5B243F38350075F1E0 /* ViewController.swift */; };
@@ -58,6 +60,8 @@
 		2E102019D95BE03D1CCAB6D6 /* Pods_IOSWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B306F88B243F5EDE003E4AE9 /* TabBarItems.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBarItems.xcassets; sourceTree = "<group>"; };
 		B3319E482441E38E005B8777 /* ColectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColectionViewCell.swift; sourceTree = "<group>"; };
+		B36FDA262445012500AFDE87 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		B36FDA282445042B00AFDE87 /* SettingsOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOptionsViewModel.swift; sourceTree = "<group>"; };
 		B3861E54243F38350075F1E0 /* IOSWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3861E57243F38350075F1E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3861E59243F38350075F1E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				B3861E95243F4EAC0075F1E0 /* SettingsViewModel.swift */,
+				B36FDA282445042B00AFDE87 /* SettingsOptionsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 		B3861E8F243F4E6C0075F1E0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B36FDA262445012500AFDE87 /* SettingsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				B3861E96243F4EAC0075F1E0 /* SettingsViewModel.swift in Sources */,
 				B3B1E5E02440F157004A4FBE /* CurrentWeatherViewModel.swift in Sources */,
 				B3861EA5243F523E0075F1E0 /* ForecastCoordinator.swift in Sources */,
+				B36FDA292445042B00AFDE87 /* SettingsOptionsViewModel.swift in Sources */,
 				B3861E58243F38350075F1E0 /* AppDelegate.swift in Sources */,
 				B3BB4C47243F90FF0011A649 /* AutoCompleteViewModel.swift in Sources */,
 				B3861E92243F4E7E0075F1E0 /* SettingsInterfaces.swift in Sources */,
@@ -634,6 +641,7 @@
 				B3B1E5DC2440AB86004A4FBE /* WeatherCall.swift in Sources */,
 				B3861E62243F38350075F1E0 /* IOSWeather.xcdatamodeld in Sources */,
 				B3C5096C244348120005D56E /* WeatherCollectionViewHeader.swift in Sources */,
+				B36FDA272445012500AFDE87 /* SettingsTableViewCell.swift in Sources */,
 				B3861E8B243F4B2A0075F1E0 /* MapCoordinator.swift in Sources */,
 				B3B1E5E62440F6D0004A4FBE /* HourlyWeatherViewModel.swift in Sources */,
 				B3861EAE243F54CD0075F1E0 /* NotificationsViewController.swift in Sources */,

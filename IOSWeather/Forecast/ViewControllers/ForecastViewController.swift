@@ -76,7 +76,7 @@ class ForecastViewController: UIViewController {
     let titleLabelView: UILabel = {
         let lv = UILabel()
         lv.translatesAutoresizingMaskIntoConstraints = false
-        lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lv.textColor = UIColor(named: "black")
         lv.font = .boldSystemFont(ofSize: 32)
         lv.textAlignment = .center
         return lv
@@ -84,7 +84,7 @@ class ForecastViewController: UIViewController {
     
     let separatorView: UIView = {
         let sv = UIView()
-        sv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        sv.backgroundColor = UIColor(named: "black")
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
@@ -95,9 +95,9 @@ class ForecastViewController: UIViewController {
         sb.backgroundColor = .clear
         sb.placeholder = "Search Location"
         sb.searchTextField.textAlignment = .left
-        sb.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        sb.searchTextField.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        sb.searchTextField.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        sb.barTintColor = UIColor(named: "white")
+        sb.searchTextField.textColor = UIColor(named: "black")
+        sb.searchTextField.backgroundColor = UIColor(named: "white")
         sb.isTranslucent = false
         sb.backgroundImage = UIImage()
         return sb
@@ -108,6 +108,7 @@ class ForecastViewController: UIViewController {
         tb.translatesAutoresizingMaskIntoConstraints = false
         tb.isHidden = true
         tb.tableFooterView = UIView()
+        tb.backgroundColor = UIColor(named: "white")
         return tb
     }()
     
@@ -116,7 +117,7 @@ class ForecastViewController: UIViewController {
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        cv.backgroundColor = UIColor(named: "white")
         cv.isPagingEnabled = true
         cv.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return cv
@@ -140,7 +141,7 @@ class ForecastViewController: UIViewController {
     let weatherDisplayScrollBar: UIView = {
        let bv = UIView()
         bv.translatesAutoresizingMaskIntoConstraints = false
-        bv.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        bv.backgroundColor = UIColor(named: "grey")
         return bv
     }()
     
@@ -150,7 +151,7 @@ class ForecastViewController: UIViewController {
         let title = "Hourly"
         let attributes: [NSAttributedString.Key: Any]? = [
             .font: UIFont.boldSystemFont(ofSize: 18),
-            .foregroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            .foregroundColor: UIColor(named: "black") ?? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         ]
         let attributedString = NSAttributedString(string: title, attributes: attributes)
         hb.setAttributedTitle(attributedString, for: .normal)
@@ -165,7 +166,7 @@ class ForecastViewController: UIViewController {
         let title = "Daily"
         let attributes: [NSAttributedString.Key: Any]? = [
             .font: UIFont.boldSystemFont(ofSize: 18),
-            .foregroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            .foregroundColor: UIColor(named: "black") ?? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         ]
         let attributedString = NSAttributedString(string: title, attributes: attributes)
         db.setAttributedTitle(attributedString, for: .normal)
@@ -201,7 +202,7 @@ class ForecastViewController: UIViewController {
     }
     
     fileprivate func addSubviews() {
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = UIColor(named: "white")
         view.addSubview(separatorView)
         view.addSubview(searchBarView)
         view.addSubview(collectionView)
@@ -354,21 +355,12 @@ extension ForecastViewController: ForecastViewInterface {
     func showHourlyWeather(_ results: [HourlyWeatherViewModel]) {
         self.hourlyResults = results
         collectionView.reloadData()
-//        let indexPath = IndexPath(item: 0, section: 0)
-//        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
-//        cell.hourlyResults = results
-//        cell.isHourly = true
     }
     
     func showDailyWeather(_ results: [DailyWeatherViewModel]) {
         self.dailyResults = results
         collectionView.reloadData()
-//        let indexPath = IndexPath(item: 1, section: 0)
-//        guard let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAt: indexPath) as?
-//        CollectionViewCell else { return }
-//         collectionView.cellForItem(at: indexPath)
-////        cell.dailyResults = results
-//        cell.isHourly = false
+
     }
     
     func showLookUpResults(_ results: LookUpViewModel) {

@@ -38,8 +38,8 @@ class TabBarViewController: UITabBarController {
     }
     
     fileprivate func setupTabBarApearance() {
-        tabBar.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        tabBar.unselectedItemTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        tabBar.tintColor = UIColor(named: "blue")
+        tabBar.unselectedItemTintColor = UIColor(named: "black")
         tabBar.barStyle = .default
         tabBar.isTranslucent = false
     }

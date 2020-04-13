@@ -39,7 +39,7 @@ class WeatherCollectionViewHeader: UICollectionReusableView {
     let separatorView: UIView = {
         let sv = UIView()
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        sv.backgroundColor = UIColor(named: "black")
         return sv
     }()
     

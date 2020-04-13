@@ -13,9 +13,9 @@ protocol SettingsNavigator {
 }
 
 protocol SettingsViewInterface {
-    
+    func showSettingsOptions(_ settingsOptions: [SettingsOptionsViewModel])
 }
 
 protocol SettingsViewModelInterface {
-    
+    func getSettingsOptions()
 }

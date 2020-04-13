@@ -29,10 +29,10 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     var dailyWeatherResults: DailyWeatherViewModel? {
         didSet {
             guard let maxTemp = dailyWeatherResults?.temp?.max else { return }
-            self.tempLabel.text = "\(Int(maxTemp))ºC"
+            self.descriptionLabel.text = "max: \(Int(maxTemp))ºC"
             
             guard let minTemp = dailyWeatherResults?.temp?.min else { return }
-            self.descriptionLabel.text = "\(Int(minTemp))ºC"
+            self.tempLabel.text = "min: \(Int(minTemp))ºC"
             
             guard let unixTime = dailyWeatherResults?.dt else { return }
             let time = Date(timeIntervalSince1970: Double(unixTime)).shortDate
@@ -51,7 +51,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     let timeLabel: UILabel = {
         let tl = UILabel()
         tl.translatesAutoresizingMaskIntoConstraints = false
-        tl.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        tl.backgroundColor = UIColor(named: "white")
         tl.font = .boldSystemFont(ofSize: 18)
         return tl
     }()
@@ -59,15 +59,16 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     let descriptionLabel: UILabel = {
         let dl = UILabel()
         dl.translatesAutoresizingMaskIntoConstraints = false
-        dl.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        dl.backgroundColor = UIColor(named: "white")
         dl.textAlignment = .center
+        dl.font = .boldSystemFont(ofSize: 18)
         return dl
     }()
     
     let tempLabel: UILabel = {
         let tl = UILabel()
         tl.translatesAutoresizingMaskIntoConstraints = false
-        tl.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        tl.backgroundColor = UIColor(named: "white")
         tl.textAlignment = .right
         tl.font = .boldSystemFont(ofSize: 18)
         return tl
@@ -76,7 +77,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     let separatorView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        v.backgroundColor = UIColor(named: "black")
         return v
     }()
     

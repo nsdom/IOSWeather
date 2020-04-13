@@ -25,5 +25,8 @@ class SettingsViewModel {
 }
 
 extension SettingsViewModel: SettingsViewModelInterface {
-    
+    func getSettingsOptions() {
+        var SettingsOptionsSections: [SettingsOptionsViewModel] = []
+        
+    }
 }

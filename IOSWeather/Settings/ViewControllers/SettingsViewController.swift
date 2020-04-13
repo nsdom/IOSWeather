@@ -17,19 +17,25 @@ class SettingsViewController: UIViewController {
     let titleLabelView: UILabel = {
         let lv = UILabel()
         lv.translatesAutoresizingMaskIntoConstraints = false
-        lv.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        lv.backgroundColor = UIColor(named: "white")
         lv.text = "Settings"
         lv.textAlignment = .center
         lv.font = .boldSystemFont(ofSize: 24)
-        lv.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lv.textColor = UIColor(named: "black")
         return lv
+    }()
+    
+    let settingsTableView: UITableView = {
+        let tv = UITableView()
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        return tv
     }()
     
     // MARK: - ViewCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = UIColor(named: "white")
         view.addSubview(titleLabelView)
     }
     
@@ -48,5 +54,20 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewInterface {
+    func showSettingsOptions(_ settingsOptions: [SettingsOptionsViewModel]) {
+    }
     
 }
+
+//extension SettingsViewController: UITableViewDataSource {
+    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        4
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//
+    
+//}

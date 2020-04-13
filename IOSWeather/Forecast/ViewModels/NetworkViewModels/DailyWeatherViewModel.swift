@@ -23,37 +23,37 @@ public struct DailyWeatherViewModel {
     public var rain: Double?
     public var uvi: Double?
 
-    public init(dailyResult: [WeatherCall.Daily]) {
-        self.dt = dailyResult.first?.dt
-        self.sunrise = dailyResult.first?.sunrise
-        self.sunset = dailyResult.first?.sunset
+    public init(dailyResult: WeatherCall.Daily) {
+        self.dt = dailyResult.dt
+        self.sunrise = dailyResult.sunrise
+        self.sunset = dailyResult.sunset
         self.temp = TempViewModel(
-            day: dailyResult.first?.temp?.day,
-            min: dailyResult.first?.temp?.min,
-            max: dailyResult.first?.temp?.max,
-            night: dailyResult.first?.temp?.night,
-            eve: dailyResult.first?.temp?.eve,
-            morn: dailyResult.first?.temp?.morn
+            day: dailyResult.temp?.day,
+            min: dailyResult.temp?.min,
+            max: dailyResult.temp?.max,
+            night: dailyResult.temp?.night,
+            eve: dailyResult.temp?.eve,
+            morn: dailyResult.temp?.morn
         )
         self.feelsLike = FeelsLikeViewModel(
-            day: dailyResult.first?.feelsLike?.day,
-            night: dailyResult.first?.feelsLike?.night,
-            eve: dailyResult.first?.feelsLike?.eve,
-            morn: dailyResult.first?.feelsLike?.morn
+            day: dailyResult.feelsLike?.day,
+            night: dailyResult.feelsLike?.night,
+            eve: dailyResult.feelsLike?.eve,
+            morn: dailyResult.feelsLike?.morn
         )
-        self.pressure = dailyResult.first?.pressure
-        self.humidity = dailyResult.first?.humidity
-        self.windSpeed = dailyResult.first?.windSpeed
-        self.windDeg = dailyResult.first?.windDeg
+        self.pressure = dailyResult.pressure
+        self.humidity = dailyResult.humidity
+        self.windSpeed = dailyResult.windSpeed
+        self.windDeg = dailyResult.windDeg
         self.weather = [WeatherViewModel(
-            id: dailyResult.first?.weather?.first?.id,
-            main: dailyResult.first?.weather?.first?.main,
-            description: dailyResult.first?.weather?.first?.description,
-            icon: dailyResult.first?.weather?.first?.icon
+            id: dailyResult.weather?.first?.id,
+            main: dailyResult.weather?.first?.main,
+            description: dailyResult.weather?.first?.description,
+            icon: dailyResult.weather?.first?.icon
             )]
-        self.clouds = dailyResult.first?.clouds
-        self.rain = dailyResult.first?.rain
-        self.uvi = dailyResult.first?.uvi
+        self.clouds = dailyResult.clouds
+        self.rain = dailyResult.rain
+        self.uvi = dailyResult.uvi
     }
 }
 

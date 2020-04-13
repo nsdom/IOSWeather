@@ -42,11 +42,13 @@ extension ForecastViewModel: ForecastViewModelInterface {
                 }
                 
                 guard let dailyResult = weatherResult.daily else { return }
-                let dailyWeather = DailyWeatherViewModel(dailyResult: dailyResult)
-
+                let dailyWeather = dailyResult.map { (dailyData) in
+                    return  DailyWeatherViewModel(dailyResult: dailyData)
+                }
+                
                 DispatchQueue.main.async {
                     self.view.showCurrentWeather(currentWeather)
-                    self.view.showHourlyWeather(hourlyWeather)
+                    self.view.showHourlyWeather(Array(hourlyWeather.prefix(24)))
                     self.view.showDailyWeather(dailyWeather)
                 }
             case .failure(let error):

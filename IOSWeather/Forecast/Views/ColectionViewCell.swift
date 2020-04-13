@@ -15,10 +15,26 @@ class CollectionViewCell: UICollectionViewCell {
     
     var hourlyResults: [HourlyWeatherViewModel]? {
      didSet {
+        let indexPath = IndexPath(item: 0, section: 0)
+        guard let header = collectionView.supplementaryView(
+            forElementKind: UICollectionView.elementKindSectionHeader,
+            at: indexPath) as? WeatherCollectionViewHeader else { return }
+        let max = hourlyResults?.sorted { $0.temp ?? 0 > $1.temp ?? 0 }.first?.temp ?? 0
+        let min = hourlyResults?.sorted { $0.temp ?? 0 < $1.temp ?? 0}.first?.temp ?? 0
+        header.maxTempLabel.text = "Highest: \(Int(max))ºC"
+        header.minTempLabel.text = "Lowest: \(Int(min))ºC"
         collectionView.reloadData()
         }
     }
      
+    var dailyResults: [DailyWeatherViewModel]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    var isHourly: Bool = true
+    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -66,7 +82,7 @@ class CollectionViewCell: UICollectionViewCell {
 
 extension CollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 24
+        return isHourly ? hourlyResults?.count ?? 0 : dailyResults?.count ?? 0
     }
 
     //swiftlint:disable force_cast
@@ -74,7 +90,14 @@ extension CollectionViewCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: WeatherCollectionViewCell.reuseId,
             for: indexPath) as! WeatherCollectionViewCell
-        cell.hourlyWeatherResults = hourlyResults?[indexPath.row]
+        
+        if isHourly {
+             cell.hourlyWeatherResults = hourlyResults?[indexPath.row]
+        } else {
+            cell.dailyWeatherResults = dailyResults?[indexPath.row]
+        }
+       
+        
         return cell
     }
     
@@ -95,7 +118,7 @@ extension CollectionViewCell: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 120)
+        return CGSize(width: collectionView.bounds.width, height: 60)
     }
     
 }

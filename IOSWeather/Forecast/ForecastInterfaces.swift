@@ -20,7 +20,7 @@ protocol ForecastViewInterface {
     
     func showCurrentWeather(_ results: CurrentWeatherViewModel)
     func showHourlyWeather(_ results: [HourlyWeatherViewModel])
-    func showDailyWeather(_ results: DailyWeatherViewModel)
+    func showDailyWeather(_ results: [DailyWeatherViewModel])
     
 }
 

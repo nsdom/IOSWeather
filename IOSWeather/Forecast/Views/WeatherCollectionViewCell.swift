@@ -26,6 +26,21 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var dailyWeatherResults: DailyWeatherViewModel? {
+        didSet {
+            guard let maxTemp = dailyWeatherResults?.temp?.max else { return }
+            self.tempLabel.text = "\(Int(maxTemp))ºC"
+            
+            guard let minTemp = dailyWeatherResults?.temp?.min else { return }
+            self.descriptionLabel.text = "\(Int(minTemp))ºC"
+            
+            guard let unixTime = dailyWeatherResults?.dt else { return }
+            let time = Date(timeIntervalSince1970: Double(unixTime)).shortDate
+            self.timeLabel.text = time
+        }
+        
+    }
+    
     let hstackView: UIStackView = {
         let hs = UIStackView()
         hs.translatesAutoresizingMaskIntoConstraints = false

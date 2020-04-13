@@ -40,6 +40,12 @@ class ForecastViewController: UIViewController {
         }
     }
     
+    var dailyWeatherResult: [DailyWeatherViewModel]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     var leadingConstraint: NSLayoutConstraint?
     
     var selectedIndex: Int = 0 {
@@ -166,6 +172,11 @@ class ForecastViewController: UIViewController {
         db.addTarget(self, action: #selector(switchWeatherDisplay(_:)), for: .touchUpInside)
         return db
     }()
+    
+    var hourlyResults: [HourlyWeatherViewModel] = []
+     
+    var dailyResults: [DailyWeatherViewModel] = []
+    
     // MARK: - ViewCycle
         
     override func viewDidLoad() {
@@ -341,20 +352,23 @@ extension ForecastViewController: ForecastViewInterface {
     }
     
     func showHourlyWeather(_ results: [HourlyWeatherViewModel]) {
-//        hourlyWeatherResult = results
-//        guard let hourlyWeatherResult = hourlyWeatherResult else { return }
-        let indexPath = IndexPath(item: 0, section: 0)
-        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
-        cell.hourlyResults = results
-    
-        guard let header = collectionView.supplementaryView(
-            forElementKind: UICollectionView.elementKindSectionHeader,
-            at: indexPath) as? WeatherCollectionViewHeader else { return }
-        header.hourlyWeatherResult = results
+        self.hourlyResults = results
+        collectionView.reloadData()
+//        let indexPath = IndexPath(item: 0, section: 0)
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
+//        cell.hourlyResults = results
+//        cell.isHourly = true
     }
     
-    func showDailyWeather(_ results: DailyWeatherViewModel) {
-        
+    func showDailyWeather(_ results: [DailyWeatherViewModel]) {
+        self.dailyResults = results
+        collectionView.reloadData()
+//        let indexPath = IndexPath(item: 1, section: 0)
+//        guard let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAt: indexPath) as?
+//        CollectionViewCell else { return }
+//         collectionView.cellForItem(at: indexPath)
+////        cell.dailyResults = results
+//        cell.isHourly = false
     }
     
     func showLookUpResults(_ results: LookUpViewModel) {
@@ -386,6 +400,15 @@ extension ForecastViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CollectionViewCell.reuseID,
             for: indexPath) as! CollectionViewCell
+        
+        if indexPath.item == 0 {
+             cell.isHourly = true
+            cell.hourlyResults = hourlyResults
+        } else {
+            cell.isHourly = false
+            cell.dailyResults = dailyResults
+        }
+        
         return cell
     }
     //swiftlint:enable force_cast

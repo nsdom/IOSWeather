@@ -40,6 +40,33 @@ class ForecastViewController: UIViewController {
         }
     }
     
+    var leadingConstraint: NSLayoutConstraint?
+    
+    var selectedIndex: Int = 0 {
+        didSet {
+            if selectedIndex == 0 {
+                dailyWeatherButton.isEnabled = true
+                hourlyWeatherButton.isEnabled = false
+            } else {
+                dailyWeatherButton.isEnabled = false
+                hourlyWeatherButton.isEnabled = true
+            }
+            
+            var constant: CGFloat = 0.0
+            if selectedIndex == 0 {
+                constant = 0.0
+            } else {
+                constant = view.bounds.width / 2
+            }
+            
+            leadingConstraint?.constant = constant
+            view.setNeedsLayout()
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
     let titleLabelView: UILabel = {
         let lv = UILabel()
         lv.translatesAutoresizingMaskIntoConstraints = false
@@ -92,47 +119,51 @@ class ForecastViewController: UIViewController {
     let weatherTypeContainer: UIView = {
         let iv = UIView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        iv.isHidden = true
         return iv
     }()
     
-    let hWeatherTypeStackView: UIStackView = {
+    let weatherDisplayStackView: UIStackView = {
         let hs = UIStackView()
+        hs.distribution = .fillEqually
         hs.translatesAutoresizingMaskIntoConstraints = false
         hs.axis = .horizontal
         return hs
     }()
     
-    let hButtonScrollView: UIView = {
+    let weatherDisplayScrollBar: UIView = {
        let bv = UIView()
         bv.translatesAutoresizingMaskIntoConstraints = false
         bv.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         return bv
     }()
     
-    let dButtonScrollView: UIView = {
-       let bv = UIView()
-        bv.translatesAutoresizingMaskIntoConstraints = false
-        bv.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        bv.isHidden = true
-        return bv
-    }()
-    
-    let hourlyButton: UIButton = {
+    let hourlyWeatherButton: UIButton = {
         let hb = UIButton(type: .system)
         hb.translatesAutoresizingMaskIntoConstraints = false
-        hb.setTitle("Hourly", for: .normal)
-        hb.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        hb.setTitleColor(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), for: [.selected, .highlighted])
+        let title = "Hourly"
+        let attributes: [NSAttributedString.Key: Any]? = [
+            .font: UIFont.boldSystemFont(ofSize: 18),
+            .foregroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        ]
+        let attributedString = NSAttributedString(string: title, attributes: attributes)
+        hb.setAttributedTitle(attributedString, for: .normal)
+        hb.addTarget(self, action: #selector(switchWeatherDisplay(_:)), for: .touchUpInside)
+        hb.isEnabled = false
         return hb
     }()
     
-    let dailyButton: UIButton = {
+    let dailyWeatherButton: UIButton = {
         let db = UIButton(type: .system)
         db.translatesAutoresizingMaskIntoConstraints = false
-        db.setTitle("Daily", for: .normal)
-        db.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        db.setTitleColor(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), for: [.selected, .highlighted])
+        let title = "Daily"
+        let attributes: [NSAttributedString.Key: Any]? = [
+            .font: UIFont.boldSystemFont(ofSize: 18),
+            .foregroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        ]
+        let attributedString = NSAttributedString(string: title, attributes: attributes)
+        db.setAttributedTitle(attributedString, for: .normal)
+        db.addTarget(self, action: #selector(switchWeatherDisplay(_:)), for: .touchUpInside)
         return db
     }()
     // MARK: - ViewCycle
@@ -149,12 +180,34 @@ class ForecastViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         addSubviews()
-
+        setupButtonsLayout()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        setupSearchLayout()
+        setupForecastLayouts()
+    }
+    
+    fileprivate func addSubviews() {
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.addSubview(separatorView)
+        view.addSubview(searchBarView)
+        view.addSubview(collectionView)
+        view.addSubview(searchResultsTableView)
+        view.addSubview(currentWeatherView)
+        view.addSubview(weatherTypeContainer)
+        weatherTypeContainer.addSubview(weatherDisplayStackView)
+        weatherTypeContainer.addSubview(weatherDisplayScrollBar)
+        weatherDisplayStackView.addArrangedSubview(hourlyWeatherButton)
+        weatherDisplayStackView.addArrangedSubview(dailyWeatherButton)
+        searchBarView.delegate = self
+
+    }
+    
+    // MARK: - Layout Functions
+    
+    fileprivate func setupSearchLayout() {
         NSLayoutConstraint.activate([
             separatorView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -80),
             separatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
@@ -170,17 +223,19 @@ class ForecastViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 70),
-            collectionView.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
             searchResultsTableView.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             searchResultsTableView.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
             searchResultsTableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
             searchResultsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    fileprivate func setupForecastLayouts() {
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 50),
+            collectionView.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -188,60 +243,46 @@ class ForecastViewController: UIViewController {
             currentWeatherView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             currentWeatherView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
-        
-        setupButtonsLayout()
-
-    }
-    
-    fileprivate func addSubviews() {
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        view.addSubview(separatorView)
-        view.addSubview(searchBarView)
-        view.addSubview(collectionView)
-        view.addSubview(searchResultsTableView)
-        view.addSubview(currentWeatherView)
-        view.addSubview(weatherTypeContainer)
-        weatherTypeContainer.addSubview(hWeatherTypeStackView)
-        weatherTypeContainer.addSubview(hButtonScrollView)
-        weatherTypeContainer.addSubview(dButtonScrollView)
-        hWeatherTypeStackView.addArrangedSubview(hourlyButton)
-        hWeatherTypeStackView.addArrangedSubview(dailyButton)
-        
-        searchBarView.delegate = self
-
     }
     
     fileprivate func setupButtonsLayout() {
         NSLayoutConstraint.activate([
-            weatherTypeContainer.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: -8),
+            weatherTypeContainer.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: 0),
             weatherTypeContainer.leadingAnchor.constraint(equalTo: separatorView.leadingAnchor),
             weatherTypeContainer.trailingAnchor.constraint(equalTo: separatorView.trailingAnchor),
-            weatherTypeContainer.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 8)
+            weatherTypeContainer.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 0)
         ])
         
         NSLayoutConstraint.activate([
-            hWeatherTypeStackView.topAnchor.constraint(equalTo: weatherTypeContainer.topAnchor),
-            hWeatherTypeStackView.leadingAnchor.constraint(equalTo: weatherTypeContainer.leadingAnchor),
-            hWeatherTypeStackView.trailingAnchor.constraint(equalTo: weatherTypeContainer.trailingAnchor),
-            hWeatherTypeStackView.bottomAnchor.constraint(equalTo: weatherTypeContainer.bottomAnchor, constant: -5)
+            weatherDisplayStackView.topAnchor.constraint(equalTo: weatherTypeContainer.topAnchor),
+            weatherDisplayStackView.leadingAnchor.constraint(equalTo: weatherTypeContainer.leadingAnchor),
+            weatherDisplayStackView.trailingAnchor.constraint(equalTo: weatherTypeContainer.trailingAnchor),
+            weatherDisplayStackView.bottomAnchor.constraint(equalTo: weatherTypeContainer.bottomAnchor, constant: -5)
         ])
-        
         NSLayoutConstraint.activate([
-            hButtonScrollView.topAnchor.constraint(equalTo: hWeatherTypeStackView.bottomAnchor),
-            hButtonScrollView.leadingAnchor.constraint(equalTo: hourlyButton.leadingAnchor),
-            hButtonScrollView.trailingAnchor.constraint(equalTo: hourlyButton.trailingAnchor),
-            hButtonScrollView.heightAnchor.constraint(equalToConstant: 4)
+            weatherDisplayScrollBar.topAnchor.constraint(equalTo: weatherDisplayStackView.bottomAnchor),
+            weatherDisplayScrollBar.widthAnchor.constraint(equalToConstant: view.bounds.width / 2 - 16),
+            weatherDisplayScrollBar.heightAnchor.constraint(equalToConstant: 4)
         ])
-        
-        NSLayoutConstraint.activate([
-            dButtonScrollView.topAnchor.constraint(equalTo: hWeatherTypeStackView.bottomAnchor),
-            dButtonScrollView.leadingAnchor.constraint(equalTo: dailyButton.leadingAnchor),
-            dButtonScrollView.trailingAnchor.constraint(equalTo: dailyButton.trailingAnchor),
-            dButtonScrollView.heightAnchor.constraint(equalToConstant: 4)
-        ])
-        hourlyButton.widthAnchor.constraint(equalToConstant: 199).isActive = true
+
+        leadingConstraint = weatherDisplayScrollBar.leadingAnchor.constraint(
+            equalTo: weatherTypeContainer.leadingAnchor, constant: 0)
+        leadingConstraint?.isActive = true
     }
     
+    // MARK: - Other Functions
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let index = Int(targetContentOffset.pointee.x / collectionView.bounds.width)
+        selectedIndex = index
+    }
+    
+    @objc func switchWeatherDisplay(_ sender: UIButton) {
+
+        selectedIndex = (selectedIndex == 0) ? 1 : 0
+        let index = IndexPath(item: selectedIndex, section: 0)
+        collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+    }
 }
 
 // MARK: - Extensions
@@ -250,6 +291,7 @@ extension ForecastViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchResultsTableView.isHidden = false
+        weatherTypeContainer.isHidden = true
         searchBar.text = nil
     }
     
@@ -281,6 +323,7 @@ extension ForecastViewController: UITableViewDataSource {
         guard let locationId = autoCompleteResults?[indexPath.row].locationId else { return }
         viewModel.getLookUp(locationId: locationId)
         searchResultsTableView.isHidden = true
+        weatherTypeContainer.isHidden = false
         searchBarView.resignFirstResponder()
         searchResultsTableView.deselectRow(at: indexPath, animated: true)
         autoCompleteResults = nil
